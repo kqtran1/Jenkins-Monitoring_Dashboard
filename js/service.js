@@ -1,39 +1,39 @@
-jenkinsMonitoringModule.factory('JobService', function ($http, $q) {
+jenkinsMonitoringControllers.factory('JobService', function ($http) {
     var jobService = {
         async: function (url) {
-            var deferred = $q.defer();
-            $http.get(url + '/api/json')
-                .success(function (data, status, headers, config) {
-                    deferred.resolve(data);
-                })
-                .error(function (data, status, headers, config) {
-                    deferred.reject(status);
-                });
-            ;
-            return deferred.promise;
+            // $http returns a promise, which has a then function, which also returns a promise
+            var promise = $http.get(url + '/api/json').then(function (response) {
+                return response.data;
+            });
+            // Return the promise to the controller
+            return promise;
         }
     };
     return jobService;
 });
 
-jenkinsMonitoringModule.factory('JobBuildService', function ($http) {
+jenkinsMonitoringControllers.factory('JobBuildService', function ($http) {
     var jobBuildService = {
         async: function (url) {
+            // $http returns a promise, which has a then function, which also returns a promise
             var promise = $http.get(url + '/api/json').then(function (response) {
                 return response.data;
             });
+            // Return the promise to the controller
             return promise;
         }
     };
     return jobBuildService;
 });
 
-jenkinsMonitoringModule.factory('JobBuildTestReportService', function ($http) {
+jenkinsMonitoringControllers.factory('JobBuildTestReportService', function ($http) {
     var jobBuildTestReportService = {
         async: function (url) {
-            var promise = $http.get(url + 'lastBuild/testReport/api/json').then(function (response) {
+            // $http returns a promise, which has a then function, which also returns a promise
+            var promise = $http.get(url + '/lastBuild/testReport/api/json').then(function (response) {
                 return response.data;
             });
+            // Return the promise to the controller
             return promise;
         }
     };
