@@ -1,0 +1,113 @@
+{
+  "actions" : [
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    null,
+    {
+      
+    }
+  ],
+  "description" : "<img src=\"http://activemq.apache.org/images/activemq-logo.png\" />\r\n<p>\r\n<a href=\"http://activemq.apache.org\">ActiveMQ :: Protocol Buffer</a>",
+  "displayName" : "ActiveMQ Protocol Buffer",
+  "displayNameOrNull" : null,
+  "name" : "ActiveMQ Protocol Buffer",
+  "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/",
+  "buildable" : true,
+  "builds" : [
+    {
+      "number" : 15,
+      "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/15/"
+    },
+    {
+      "number" : 14,
+      "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/14/"
+    },
+    {
+      "number" : 13,
+      "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/13/"
+    }
+  ],
+  "color" : "red",
+  "firstBuild" : {
+    "number" : 13,
+    "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/13/"
+  },
+  "healthReport" : [
+    {
+      "description" : "Build stability: All recent builds failed.",
+      "iconUrl" : "health-00to19.png",
+      "score" : 0
+    }
+  ],
+  "inQueue" : false,
+  "keepDependencies" : false,
+  "lastBuild" : {
+    "number" : 15,
+    "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/15/"
+  },
+  "lastCompletedBuild" : {
+    "number" : 15,
+    "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/15/"
+  },
+  "lastFailedBuild" : {
+    "number" : 15,
+    "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/15/"
+  },
+  "lastStableBuild" : null,
+  "lastSuccessfulBuild" : null,
+  "lastUnstableBuild" : null,
+  "lastUnsuccessfulBuild" : {
+    "number" : 15,
+    "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/15/"
+  },
+  "nextBuildNumber" : 16,
+  "property" : [
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "queueItem" : null,
+  "concurrentBuild" : false,
+  "downstreamProjects" : [
+    
+  ],
+  "scm" : {
+    
+  },
+  "upstreamProjects" : [
+    
+  ],
+  "modules" : [
+    {
+      "name" : "org.apache.activemq.protobuf:activemq-protobuf",
+      "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/org.apache.activemq.protobuf$activemq-protobuf/",
+      "color" : "red",
+      "displayName" : "ActiveMQ Protocol Buffers Implementation and Compiler"
+    },
+    {
+      "name" : "org.apache.activemq.protobuf:activemq-protobuf-pom",
+      "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/org.apache.activemq.protobuf$activemq-protobuf-pom/",
+      "color" : "blue",
+      "displayName" : "ActiveMQ Protocol Buffers POM"
+    },
+    {
+      "name" : "org.apache.activemq.protobuf:activemq-protobuf-test",
+      "url" : "https://builds.apache.org/job/ActiveMQ%20Protocol%20Buffer/org.apache.activemq.protobuf$activemq-protobuf-test/",
+      "color" : "notbuilt",
+      "displayName" : "ActiveMQ Protocol Buffers Tests"
+    }
+  ]
+}

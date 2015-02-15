@@ -1,0 +1,35 @@
+body {
+    color: #FFFFFF;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.jobContainer {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.failure {
+    background-color: red;
+}
+
+.success {
+    background-color: #12fc09;
+}
+
+.unstable {
+    background-color: #ffcd1a;
+}
+
+.jobName {
+    text-align: center;
+}
+
+.authorAndTestStatistics {
+    font-size: large;
+    text-align: center;
+}
+
+.jobTable {
+    width: 100%;
+}

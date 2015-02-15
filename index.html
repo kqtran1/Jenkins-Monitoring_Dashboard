@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" ng-app="jenkinsMonitoring">
+<head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+
+    <script src="js/jobsConfig.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/service.js"></script>
+</head>
+<body ng-controller="JobCtrl">
+
+<!--<div class="container-fluid jobContainer">-->
+    <!--<div ng-repeat="build in jobBuilds"-->
+         <!--ng-class="{'failure': build.result == 'FAILURE', 'success' : build.result == 'SUCCESS', 'unstable' : build.result == 'UNSTABLE'}">-->
+        <!--<div class="row">-->
+            <!--<div class="jobName col-lg-10">{{build.jobName}}</div>-->
+            <!--<div class="col-lg-2">10</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+            <!--<div class="authorAndTestStatistics" class="col-lg-10" ng-hide="build.result == 'SUCCESS'">Resp: {{build.authors}}</div>-->
+            <!--<div class="col-lg-2">900/923</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<table class="jobTable">
+    <tbody>
+    <tr ng-repeat="build in jobBuilds"
+        ng-class="{'failure': build.result == 'FAILURE', 'success' : build.result == 'SUCCESS', 'unstable' : build.result == 'UNSTABLE'}">
+        <td class="jobName">
+            <div>{{build.jobName}}</div>
+            <div class="authorAndTestStatistics">
+                <span ng-hide="build.result == 'SUCCESS' || !build.authors">Resp: {{build.authors}} - </span>
+                <span ng-hide="!build.totalTests">Total: {{build.totalTests}}</span><span ng-hide="!build.skipTests"> - Ignored: {{build.skipTests}}</span>
+            </div>
+        </td>
+        <td>{{build.failedTests}}</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</html>
