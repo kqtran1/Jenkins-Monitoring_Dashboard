@@ -21,7 +21,6 @@ jenkinsMonitoringModule.controller('JobCtrl', ['$scope', '$timeout', 'JobService
             var jobBuild = $scope.build || {};
 
             if ($scope.job.lastBuildUrl) {
-                // request build result
                 JobBuildService.async($scope.job.lastBuildUrl).then(function (callbackdata) {
                     jobBuild.result = callbackdata.result;
                     var authors = callbackdata.changeSet.items.map(function (change) {
@@ -54,6 +53,4 @@ jenkinsMonitoringModule.controller('JobCtrl', ['$scope', '$timeout', 'JobService
         };
 
         $scope.intervalFunction();
-
-
     }]);
