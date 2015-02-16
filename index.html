@@ -14,14 +14,15 @@
     <script src="js/controller.js"></script>
     <script src="js/service.js"></script>
 </head>
-<body ng-controller="JobCtrl">
+<body>
 
-<table class="jobTable">
+<table class="jobTable" ng-controller="JobListCtrl">
     <tbody>
-    <tr ng-repeat="build in jobBuilds"
+    <tr ng-repeat="job in jobList"
+        ng-controller="JobCtrl"
         ng-class="{'failure': build.result == 'FAILURE', 'success' : build.result == 'SUCCESS', 'unstable' : build.result == 'UNSTABLE'}">
         <td class="jobName">
-            <div>{{build.jobName}}</div>
+            <div>{{job.name}}</div>
             <div class="authorAndTestStatistics">
                 <span ng-hide="build.result == 'SUCCESS' || !build.authors">resp: {{build.authors}} - </span>
                 <span ng-hide="!build.totalTests">total: {{build.totalTests}}</span>
