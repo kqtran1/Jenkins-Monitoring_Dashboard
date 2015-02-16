@@ -1,45 +1,54 @@
-var jenkinsMonitoringControllers = angular.module('jenkinsMonitoring', ['ngResource']);
+var jenkinsMonitoringModule = angular.module('jenkinsMonitoring', ['ngResource']);
 
-jenkinsMonitoringControllers.controller('JobCtrl', ['$scope', '$timeout', 'JobService', 'JobBuildService', 'JobBuildTestReportService',
+jenkinsMonitoringModule.controller('JobListCtrl', ['$scope', 'JobService', function ($scope, JobService) {
+    $scope.jobList = jenkinsJobList.map(function (jobConfig) {
+        var job = {};
+        job.url = jobConfig.url;
+
+        JobService.async(jobConfig.url).then(function (callbackdata) {
+            job.name = callbackdata.displayName;
+            job.lastBuildUrl = callbackdata.lastBuild.url;
+        });
+        return job;
+    });
+}]);
+
+jenkinsMonitoringModule.controller('JobCtrl', ['$scope', '$timeout', 'JobService', 'JobBuildService', 'JobBuildTestReportService',
     function ($scope, $timeout, JobService, JobBuildService, JobBuildTestReportService) {
 
-        function getJobDescriptions() {
-            return jenkinsJobList.map(function (jobConfig) {
-                var jobBuild = {};
-                JobService.async(jobConfig.url).then(function (callbackdata) {
-                    jobBuild.jobName = callbackdata.displayName;
+        function getJobBuild() {
+            console.log($scope.build);
+            var jobBuild = $scope.build || {};
 
-                    // request build result
-                    JobBuildService.async(callbackdata.lastBuild.url).then(function (callbackdata) {
-                        jobBuild.result = callbackdata.result;
-                        var authors = callbackdata.changeSet.items.map(function (change) {
-                            return change.author.fullName;
-                        });
-                        if (authors.length != 0) {
-                            jobBuild.authors = authors.reduce(function (previousValue, currentValue) {
-                                return previousValue + ' ' + currentValue;
-                            });
-                        }
+            if ($scope.job.lastBuildUrl) {
+                // request build result
+                JobBuildService.async($scope.job.lastBuildUrl).then(function (callbackdata) {
+                    jobBuild.result = callbackdata.result;
+                    var authors = callbackdata.changeSet.items.map(function (change) {
+                        return change.author.fullName;
                     });
-
+                    if (authors.length != 0) {
+                        jobBuild.authors = authors.reduce(function (previousValue, currentValue) {
+                            return previousValue + ' ' + currentValue;
+                        });
+                    }
                 });
+            }
 
-                // request tests result
-                JobBuildTestReportService.async(jobConfig.url).then(function (callbackdata) {
-                    jobBuild.totalTests = callbackdata.totalCount;
-                    jobBuild.failedTests = callbackdata.failCount;
-                    jobBuild.skipTests = callbackdata.skipCount;
-                });
-
-                return jobBuild;
+            JobBuildTestReportService.async($scope.job.url).then(function (callbackdata) {
+                jobBuild.totalTests = callbackdata.totalCount;
+                jobBuild.failedTests = callbackdata.failCount;
+                jobBuild.skipTests = callbackdata.skipCount;
             });
+
+            return jobBuild;
         }
 
-        $scope.jobBuilds = getJobDescriptions();
+        $scope.build = getJobBuild();
 
-        $scope.intervalFunction = function(){
-            $timeout(function() {
-                $scope.jobBuilds = getJobDescriptions();
+        $scope.intervalFunction = function () {
+            $timeout(function () {
+                $scope.build = getJobBuild();
                 $scope.intervalFunction();
             }, 10000)
         };
